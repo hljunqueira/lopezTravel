@@ -208,16 +208,14 @@ export default function Destinations() {
 
       <div className="relative mx-auto max-w-7xl px-6 sm:px-8">
         {/* Section Header */}
-        <div className="dest-header mb-16 flex flex-col items-start justify-between gap-8 border-b border-gold/15 pb-12 md:flex-row md:items-end">
-          <div className="max-w-2xl">
-            <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.32em] text-gold">
-              Coleções & Destinos Selecionados
-            </p>
-            <h2 className="font-editorial italic text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal tracking-tight text-[#FFF6E0] sm:whitespace-nowrap">
-              Lugares que Merecem Ser Vividos com Discrição
-            </h2>
-          </div>
-          <p className="max-w-md text-sm font-light leading-relaxed text-champagne/70">
+        <div className="dest-header mb-14 border-b border-gold/15 pb-10">
+          <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.32em] text-gold">
+            Coleções & Destinos Selecionados
+          </p>
+          <h2 className="font-editorial italic text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal tracking-tight text-[#FFF6E0] sm:whitespace-nowrap">
+            Lugares que Merecem Ser Vividos com Discrição
+          </h2>
+          <p className="mt-4 max-w-3xl text-sm sm:text-base font-light leading-relaxed text-champagne/70">
             Nossa equipe de especialistas inspeciona pessoalmente cada hotel, vila privativa e parceiro de aviação.
             Garantimos acomodações de nível presidencial e acesso prioritário global.
           </p>
