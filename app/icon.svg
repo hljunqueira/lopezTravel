@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <linearGradient id="ltGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF6E0" />
+      <stop offset="35%" stop-color="#E6C868" />
+      <stop offset="70%" stop-color="#D4AF37" />
+      <stop offset="100%" stop-color="#9E791B" />
+    </linearGradient>
+    <linearGradient id="ltRing" x1="10%" y1="10%" x2="90%" y2="90%">
+      <stop offset="0%" stop-color="#FFF6E0" />
+      <stop offset="50%" stop-color="#D4AF37" />
+      <stop offset="100%" stop-color="#7A560B" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Midnight Navy -->
+  <rect width="100" height="100" rx="24" fill="#081026" />
+
+  <!-- Elegant Gold Ring -->
+  <circle cx="50" cy="50" r="42" stroke="url(#ltRing)" stroke-width="2.5" fill="none" />
+
+  <!-- Monogram LT -->
+  <g fill="url(#ltGold)" text-anchor="middle" font-family="'Cormorant Garamond', 'Cinzel', serif" font-weight="500">
+    <text x="40" y="65" font-size="44" letter-spacing="-1">L</text>
+    <text x="60" y="65" font-size="44" letter-spacing="-1">T</text>
+  </g>
+</svg>

@@ -4,10 +4,10 @@ module.exports = {
     blocklist: ["overline"],
     darkMode: ["class"],
     content: [
-      './pages/**/*.{js,jsx}',
-      './components/**/*.{js,jsx}',
-      './app/**/*.{js,jsx}',
-      './src/**/*.{js,jsx}',
+      './pages/**/*.{js,jsx,ts,tsx}',
+      './components/**/*.{js,jsx,ts,tsx}',
+      './app/**/*.{js,jsx,ts,tsx}',
+      './src/**/*.{js,jsx,ts,tsx}',
     ],
     prefix: "",
     theme: {
@@ -20,8 +20,11 @@ module.exports = {
       },
       extend: {
         fontFamily: {
-          display: ['"Playfair Display"', 'Georgia', 'serif'],
-          sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          editorial: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+          display: ['"Cormorant Garamond"', '"Playfair Display"', 'Georgia', 'serif'],
+          serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+          cinzel: ['"Cinzel"', 'serif'],
+          sans: ['"Plus Jakarta Sans"', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         },
         colors: {
           navy: {

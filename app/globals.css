@@ -73,14 +73,21 @@
   }
   .no-scrollbar {
     -ms-overflow-style: none;
-    scrollbar-thin: none;
     scrollbar-width: none;
   }
   .gold-gradient-text {
-    background: linear-gradient(90deg, #F7E7CE 0%, #D4AF37 45%, #B8942A 100%);
+    background: linear-gradient(135deg, #FFF6E0 0%, #F3D382 30%, #D4AF37 60%, #9E791B 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+  }
+  .gold-subtle-glow {
+    box-shadow: 0 4px 28px -2px rgba(212, 175, 55, 0.15);
+  }
+  .gold-border-card {
+    border: 1px solid rgba(212, 175, 55, 0.18);
+    background: linear-gradient(180deg, rgba(17, 28, 61, 0.6) 0%, rgba(11, 19, 43, 0.85) 100%);
+    backdrop-filter: blur(12px);
   }
 }
 
