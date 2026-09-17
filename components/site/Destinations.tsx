@@ -7,7 +7,9 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
 import { ArrowUpRight } from 'lucide-react'
 
-gsap.registerPlugin(ScrollTrigger, useGSAP)
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger, useGSAP)
+}
 
 interface DestinationItem {
   id: string
@@ -23,15 +25,48 @@ interface DestinationItem {
 
 const DESTINATIONS: DestinationItem[] = [
   {
+    id: 'rio',
+    name: 'Copacabana Palace & Fasano',
+    region: 'Brasil · Rio de Janeiro',
+    category: 'Baías & Cidade Maravilhosa',
+    coordinates: "22° 54' S · 43° 11' W",
+    image: 'https://images.unsplash.com/photo-1483729558449-99ef09a8c325?q=80&w=1200&auto=format&fit=crop',
+    season: 'Melhor Época: Todo o Ano',
+    tag: 'Helicóptero VIP',
+    span: 'lg:col-span-2 lg:row-span-2',
+  },
+  {
+    id: 'paris',
+    name: 'Le Bristol & The Ritz',
+    region: 'França · Île-de-France',
+    category: 'Palácios & Alta Gastronomia',
+    coordinates: "48° 51' N · 2° 21' E",
+    image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=1200&auto=format&fit=crop',
+    season: 'Melhor Época: Abr — Out',
+    tag: 'Acesso Privé',
+    span: 'lg:col-span-1',
+  },
+  {
+    id: 'noronha',
+    name: 'Pousada Maravilha',
+    region: 'Brasil · Fernando de Noronha',
+    category: 'Mergulho & Praias Intocadas',
+    coordinates: "3° 51' S · 32° 25' W",
+    image: 'https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?q=80&w=1200&auto=format&fit=crop',
+    season: 'Melhor Época: Ago — Dez',
+    tag: 'Charter Exclusivo',
+    span: 'lg:col-span-1',
+  },
+  {
     id: 'maldivas',
     name: 'Soneva Jani & Cheval Blanc',
     region: 'Maldivas · Oceano Índico',
     category: 'Vilas Sobre as Águas',
     coordinates: "5° 22' N · 73° 21' E",
-    image: 'https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?crop=entropy&cs=srgb&fm=jpg&q=85',
+    image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?q=80&w=1200&auto=format&fit=crop',
     season: 'Melhor Época: Nov — Abr',
     tag: 'Reserva Exclusiva',
-    span: 'lg:col-span-2 lg:row-span-2',
+    span: 'lg:col-span-2',
   },
   {
     id: 'santorini',
@@ -39,7 +74,7 @@ const DESTINATIONS: DestinationItem[] = [
     region: 'Grécia · Ilhas Cíclades',
     category: 'Vilas Privadas & Iates',
     coordinates: "36° 27' N · 25° 22' E",
-    image: 'https://images.unsplash.com/photo-1613395877344-13d4a8e0d49e?crop=entropy&cs=srgb&fm=jpg&q=85',
+    image: 'https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?q=80&w=1200&auto=format&fit=crop',
     season: 'Melhor Época: Mai — Out',
     tag: 'Iate Privativo',
     span: 'lg:col-span-1',
@@ -50,7 +85,7 @@ const DESTINATIONS: DestinationItem[] = [
     region: 'Japão · Honshu Ocidental',
     category: 'Cultura & Gastronomia Kaiseki',
     coordinates: "35° 01' N · 135° 46' E",
-    image: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?crop=entropy&cs=srgb&fm=jpg&q=85',
+    image: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=1200&auto=format&fit=crop',
     season: 'Melhor Época: Mar — Mai',
     tag: 'Acesso Antecipado',
     span: 'lg:col-span-1',
@@ -61,10 +96,10 @@ const DESTINATIONS: DestinationItem[] = [
     region: 'Itália · Alpes Setentrionais',
     category: 'Chalés & Navegação Riva',
     coordinates: "46° 26' N · 11° 51' E",
-    image: 'https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?crop=entropy&cs=srgb&fm=jpg&q=85',
+    image: 'https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?q=80&w=1200&auto=format&fit=crop',
     season: 'Melhor Época: Jun — Set',
     tag: 'Heliesqui & Riva Privée',
-    span: 'lg:col-span-2',
+    span: 'lg:col-span-1',
   },
   {
     id: 'serengeti',
@@ -72,9 +107,31 @@ const DESTINATIONS: DestinationItem[] = [
     region: 'Tanzânia · África Oriental',
     category: 'Safári Aéreo & Conservação',
     coordinates: "2° 19' S · 34° 50' E",
-    image: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?crop=entropy&cs=srgb&fm=jpg&q=85',
+    image: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?q=80&w=1200&auto=format&fit=crop',
     season: 'Melhor Época: Jul — Out',
     tag: 'Expedição Privativa',
+    span: 'lg:col-span-1',
+  },
+  {
+    id: 'dubai',
+    name: 'Burj Al Arab & Dunas de Liwa',
+    region: 'Emirados Árabes Unidos',
+    category: 'Oásis Futurista & Deserto',
+    coordinates: "25° 12' N · 55° 16' E",
+    image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=1200&auto=format&fit=crop',
+    season: 'Melhor Época: Out — Abr',
+    tag: 'Suíte Presidencial',
+    span: 'lg:col-span-1',
+  },
+  {
+    id: 'borabora',
+    name: 'The St. Regis & Vilas Flutuantes',
+    region: 'Polinésia Francesa · Pacífico Sul',
+    category: 'Bangalôs & Lagoas de Cristal',
+    coordinates: "16° 30' S · 151° 44' W",
+    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1200&auto=format&fit=crop',
+    season: 'Melhor Época: Mai — Out',
+    tag: 'Refúgio Polinésio',
     span: 'lg:col-span-1',
   },
 ]
@@ -84,34 +141,65 @@ export default function Destinations() {
 
   useGSAP(
     () => {
+      if (typeof window === 'undefined') return
       const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
       if (prefersReduced) return
 
-      gsap.from('.dest-header', {
-        y: 35,
-        opacity: 0,
-        duration: 1,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 80%',
-        },
-      })
+      // Safe fromTo animation that clears inline styles upon completion
+      gsap.fromTo(
+        '.dest-header',
+        { y: 30, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: 'power2.out',
+          clearProps: 'all',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+            once: true,
+          },
+        }
+      )
 
-      gsap.from('.dest-card-item', {
-        y: 50,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.12,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: '.dest-grid-wrapper',
-          start: 'top 75%',
-        },
-      })
+      gsap.fromTo(
+        '.dest-card-item',
+        { y: 35, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.7,
+          stagger: 0.08,
+          ease: 'power2.out',
+          clearProps: 'all',
+          scrollTrigger: {
+            trigger: '.dest-grid-wrapper',
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+            once: true,
+          },
+        }
+      )
+
+      // Refresh ScrollTrigger once images and DOM expand
+      const timer = setTimeout(() => {
+        ScrollTrigger.refresh()
+      }, 500)
+
+      return () => clearTimeout(timer)
     },
     { scope: sectionRef }
   )
+
+  const handlePlanTrip = (destName: string) => {
+    const el = document.getElementById('planeje-sua-viagem')
+    if (el) {
+      const top = window.scrollY + el.getBoundingClientRect().top - 80
+      window.scrollTo({ top, behavior: 'smooth' })
+    }
+  }
 
   return (
     <section id="destinos" ref={sectionRef} className="relative bg-navy-950 py-28 sm:py-36">
@@ -125,7 +213,7 @@ export default function Destinations() {
             <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.32em] text-gold">
               Coleções & Destinos Selecionados
             </p>
-            <h2 className="font-editorial italic text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal tracking-tight text-[#FFF6E0]">
+            <h2 className="font-editorial italic text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal tracking-tight text-[#FFF6E0] sm:whitespace-nowrap">
               Lugares que Merecem Ser Vividos com Discrição
             </h2>
           </div>
@@ -179,13 +267,14 @@ export default function Destinations() {
                       {dest.region} · <span className="text-gold/80">{dest.season}</span>
                     </p>
                   </div>
-                  <a
-                    href="#contato"
+                  <button
+                    type="button"
+                    onClick={() => handlePlanTrip(dest.name)}
                     className="flex h-11 w-11 items-center justify-center rounded-full border border-gold/40 bg-navy-950/70 text-gold transition-all duration-300 group-hover:border-gold group-hover:bg-gold group-hover:text-navy-950"
                     aria-label={`Consultar roteiro para ${dest.name}`}
                   >
                     <ArrowUpRight className="h-4 w-4" />
-                  </a>
+                  </button>
                 </div>
               </div>
             </article>

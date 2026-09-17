@@ -6,7 +6,9 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
 import { ShieldCheck, Compass, Headset, Crown } from 'lucide-react'
 
-gsap.registerPlugin(ScrollTrigger, useGSAP)
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger, useGSAP)
+}
 
 const PILLARS = [
   {
@@ -51,20 +53,72 @@ export default function Experience() {
 
   useGSAP(
     () => {
+      if (typeof window === 'undefined') return
       const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
       if (prefersReduced) return
 
-      gsap.from('.exp-pillar', {
-        y: 40,
-        opacity: 0,
-        duration: 0.9,
-        stagger: 0.15,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 75%',
-        },
-      })
+      // Safe fromTo animations with clearProps so elements never get stuck with opacity: 0
+      gsap.fromTo(
+        '.exp-header',
+        { y: 30, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: 'power2.out',
+          clearProps: 'all',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+            once: true,
+          },
+        }
+      )
+
+      gsap.fromTo(
+        '.exp-pillar',
+        { y: 35, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.7,
+          stagger: 0.1,
+          ease: 'power2.out',
+          clearProps: 'all',
+          scrollTrigger: {
+            trigger: '.exp-pillars-wrapper',
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+            once: true,
+          },
+        }
+      )
+
+      gsap.fromTo(
+        '.exp-metric',
+        { y: 20, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.6,
+          stagger: 0.08,
+          ease: 'power2.out',
+          clearProps: 'all',
+          scrollTrigger: {
+            trigger: '.exp-metrics-wrapper',
+            start: 'top 90%',
+            toggleActions: 'play none none none',
+            once: true,
+          },
+        }
+      )
+
+      const timer = setTimeout(() => {
+        ScrollTrigger.refresh()
+      }, 500)
+
+      return () => clearTimeout(timer)
     },
     { scope: sectionRef }
   )
@@ -73,7 +127,7 @@ export default function Experience() {
     <section id="experiencia" ref={sectionRef} className="relative border-t border-gold/15 bg-navy-950 py-28 sm:py-36">
       <div className="relative mx-auto max-w-7xl px-6 sm:px-8">
         {/* Section Header */}
-        <div className="mx-auto mb-20 max-w-3xl text-center">
+        <div className="exp-header mx-auto mb-20 max-w-3xl text-center">
           <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.32em] text-gold">
             A Filosofia Lopez Travel
           </p>
@@ -87,7 +141,7 @@ export default function Experience() {
         </div>
 
         {/* Pillars Grid */}
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="exp-pillars-wrapper grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
           {PILLARS.map((pillar) => {
             const Icon = pillar.icon
             return (
@@ -115,9 +169,9 @@ export default function Experience() {
         </div>
 
         {/* Numbers Strip */}
-        <div className="mt-20 grid grid-cols-2 gap-8 border-t border-gold/15 pt-16 lg:grid-cols-4">
+        <div className="exp-metrics-wrapper mt-20 grid grid-cols-2 gap-8 border-t border-gold/15 pt-16 lg:grid-cols-4">
           {METRICS.map((metric) => (
-            <div key={metric.label} className="text-center">
+            <div key={metric.label} className="exp-metric text-center">
               <p className="font-serif text-4xl font-light text-gold sm:text-5xl lg:text-6xl">
                 {metric.value}
               </p>
